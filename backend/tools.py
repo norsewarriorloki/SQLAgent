@@ -36,7 +36,9 @@ def execute_sql_tool(query: str, db = get_connection()) -> str:
 @tool 
 def validate_sql_tool(sql: str, db = get_connection()) -> str:
     """Validate the provided SQL query."""
+    
     sql_upper = sql.strip().upper()
+    print(sql_upper)
     
     if not sql_upper.startswith("SELECT"):
         return {

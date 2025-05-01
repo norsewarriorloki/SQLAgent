@@ -1,0 +1,7 @@
+langchain
+langchain_openai
+langgraph
+langchainhub
+langchain_experimental
+langchain_community
+psycopg2

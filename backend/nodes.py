@@ -4,7 +4,7 @@ def generate_sql_node(state):
     prompt = state["user_prompt"]
     sql = generate_sql_tool.invoke(prompt) 
     return {
-        "generated_sql": "sql"
+        "generated_sql": sql
     }
 
 def validate_sql_node(state):
@@ -20,3 +20,7 @@ def execute_sql_node(state):
     return {
         "execution_result": execution_result
     }
+
+def reject_sql_node(state):
+    reason = state.get("validation_result", "Query rejected for safety reasons.")
+    return {"execution_result": reason}

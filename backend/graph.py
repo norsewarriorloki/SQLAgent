@@ -11,14 +11,15 @@ class State(TypedDict):
 workflow = StateGraph(State)
 workflow.add_node("generate_sql_node", generate_sql_node)
 workflow.add_node("validate_sql_node",validate_sql_node)
-workflow.add_node("execute_sql",execute_sql_node)
+workflow.add_node("execute_sql_node",execute_sql_node)
+workflow.add_node("reject_sql_node", reject_sql_node)
 
 workflow.set_entry_point("generate_sql_node")
 workflow.add_edge("generate_sql_node", "validate_sql_node")
 
 def conditional_acceptance_node(state: State) -> str:
     if state["validation_result"]["status"] == "approved":
-        return "execute_sql"
+        return "execute_sql_node"
     else:
         return "reject_sql_node"
     
